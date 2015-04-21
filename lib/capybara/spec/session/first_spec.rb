@@ -92,19 +92,19 @@ Capybara::SpecHelper.spec '#first' do
     end
 
     it "should not wait if false" do
-      Capybara.first_default_waiting = false
+      Capybara.wait_on_first_by_default = false
       @session.click_link('clickable')
       expect(@session.first(:css, 'a#has-been-clicked')).to be_nil
     end
 
     it "should wait for at least one match if true" do
-      Capybara.first_default_waiting = true
+      Capybara.wait_on_first_by_default = true
       @session.click_link('clickable')
       expect(@session.first(:css, 'a#has-been-clicked')).not_to be_nil
     end
 
     it "should return nil after waiting if no match" do
-      Capybara.first_default_waiting = true
+      Capybara.wait_on_first_by_default = true
       @session.click_link('clickable')
       expect(@session.first(:css, 'a#not-a-real-link')).to be_nil
     end
