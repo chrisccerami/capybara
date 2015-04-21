@@ -166,7 +166,13 @@ module Capybara
       # @return [Capybara::Node::Element]            The found element or nil
       #
       def first(*args)
+        if Capybara.first_default_waiting
+          options = if args.last.is_a?(Hash) then args.pop.dup else {} end
+          args.push({minimum: 1}.merge(options))
+        end
         all(*args).first
+      rescue Capybara::ExpectationNotMet
+        nil
       end
     end
   end

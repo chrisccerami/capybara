@@ -33,6 +33,7 @@ module Capybara
         Capybara.raise_server_errors = true
         Capybara.visible_text_only = false
         Capybara.match = :smart
+        Capybara.first_default_waiting = false
       end
 
       def filter(requires, metadata)
